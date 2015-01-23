@@ -1,5 +1,5 @@
 <template>
-    <import src="./money"></import>
+    <import from="./money"></import>
     <section>
         <h2>Aurelia List w/Kendo DataSource</h2>
 
@@ -11,7 +11,7 @@
 
                     <h3>${item.ProductName}</h3>
 
-                    <p>${item.UnitPrice | money:c}</p>
+                    <p>${item.UnitPrice | money}</p>
                 </div>
             </div>
             <div id="pager" class="k-pager-wrap"></div>
