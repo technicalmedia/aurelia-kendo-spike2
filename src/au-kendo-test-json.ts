@@ -11,26 +11,38 @@ export class AuKendoTest {
     }
 
     items: Array = [];
+    dataSource: kendo.data.DataSource;
+
+    activate() {
+
+        console.log("au-kendo-test activate :)");
+
+        var promise = new Promise((resolve, reject) => {
+
+            this.dataSource = new kendo.data.DataSource({
+                type: "json",
+                transport: {
+                    read: "./dist/services/products.json"
+                },
+                pageSize: 21
+            });
+            this.dataSource.fetch();
+
+            this.items = this.dataSource.view();
+            this.dataSource.bind("change", (e) => {
+                this.items = this.dataSource.view();
+                resolve();
+            });
+        });
+
+        return promise;
+    }
 
     attached() {
         console.log("au-kendo-test attached :)");
 
-        var dataSource = new kendo.data.DataSource({
-            type: "json",
-            transport: {
-                read: "./dist/services/products.json"
-            },
-            pageSize: 21
-        });
-        dataSource.fetch();
-
-        this.items = dataSource.view();
-        dataSource.bind("change", (e) => {
-            this.items = dataSource.view();
-        });
-
-        $("#pager").kendoPager({
-            dataSource: dataSource
+        $(this.myPager).kendoPager({
+            dataSource: this.dataSource
         });
     }
 }

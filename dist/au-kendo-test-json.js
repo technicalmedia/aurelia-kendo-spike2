@@ -8,26 +8,35 @@ define(["require", "exports"], function(require, exports) {
             this.items = [];
             console.log("au-kendo-test constructed :)");
         }
-        AuKendoTest.prototype.attached = function () {
+        AuKendoTest.prototype.activate = function () {
             var _this = this;
+            console.log("au-kendo-test activate :)");
+
+            var promise = new Promise(function (resolve, reject) {
+                _this.dataSource = new kendo.data.DataSource({
+                    type: "json",
+                    transport: {
+                        read: "./dist/services/products.json"
+                    },
+                    pageSize: 21
+                });
+                _this.dataSource.fetch();
+
+                _this.items = _this.dataSource.view();
+                _this.dataSource.bind("change", function (e) {
+                    _this.items = _this.dataSource.view();
+                    resolve();
+                });
+            });
+
+            return promise;
+        };
+
+        AuKendoTest.prototype.attached = function () {
             console.log("au-kendo-test attached :)");
 
-            var dataSource = new kendo.data.DataSource({
-                type: "json",
-                transport: {
-                    read: "./dist/services/products.json"
-                },
-                pageSize: 21
-            });
-            dataSource.fetch();
-
-            this.items = dataSource.view();
-            dataSource.bind("change", function (e) {
-                _this.items = dataSource.view();
-            });
-
-            $("#pager").kendoPager({
-                dataSource: dataSource
+            $(this.myPager).kendoPager({
+                dataSource: this.dataSource
             });
         };
         return AuKendoTest;
