@@ -2,7 +2,7 @@ define(["require", "exports", "aurelia-framework"], function(require, exports, a
     var NavBar = (function () {
         function NavBar() {
         }
-        NavBar.metadata = [new au.Behavior.withProperty("router")];
+        NavBar.metadata = au.Behavior.withProperty("router");
         return NavBar;
     })();
     exports.NavBar = NavBar;

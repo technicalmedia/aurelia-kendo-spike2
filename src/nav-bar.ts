@@ -2,5 +2,5 @@
 import au = require("aurelia-framework");
 
 export class NavBar {
-    static metadata = [new au.Behavior.withProperty("router")];
+    static metadata = au.Behavior.withProperty("router");
 }
