@@ -1,40 +1,21 @@
-System.register(["aurelia-router"], function (_export) {
-  "use strict";
-
-  var Router, _prototypeProperties, App;
-  return {
-    setters: [function (_aureliaRouter) {
-      Router = _aureliaRouter.Router;
-    }],
-    execute: function () {
-      _prototypeProperties = function (child, staticProps, instanceProps) {
-        if (staticProps) Object.defineProperties(child, staticProps);
-        if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-      };
-
-      App = (function () {
+define(["require", "exports", "aurelia-router"], function(require, exports, aur) {
+    var App = (function () {
         function App(router) {
-          this.router = router;
-          this.router.configure(function (config) {
-            config.title = "Aurelia";
-            config.map([{ route: ["", "welcome"], moduleId: "welcome", nav: true, title: "Welcome" }, { route: "flickr", moduleId: "flickr", nav: true }, { route: "child-router", moduleId: "child-router", nav: true, title: "Child Router" }]);
-          });
+            this.router = router;
+            this.router.configure(function (config) {
+                config.title = "Aurelia VS/TS";
+                config.map([
+                    { route: ["", "welcome"], moduleId: "welcome", nav: true, title: "Welcome to VS/TS" },
+                    { route: "flickr", moduleId: "flickr", nav: true },
+                    { route: "child-router", moduleId: "child-router", nav: true, title: "Child Router" },
+                    { route: ["kendo-test"], moduleId: "kendo-test", nav: true, title: "Kendo Test" },
+                    { route: ["kendo-test-json"], moduleId: "kendo-test-json", nav: true, title: "Kendo Test json" },
+                    { route: ["au-kendo-test-json"], moduleId: "au-kendo-test-json", nav: true, title: "Aurelia Kendo DataSource Test" }
+                ]);
+            });
         }
-
-        _prototypeProperties(App, {
-          inject: {
-            value: function inject() {
-              return [Router];
-            },
-            writable: true,
-            enumerable: true,
-            configurable: true
-          }
-        });
-
+        App.inject = [aur.Router];
         return App;
-      })();
-      _export("App", App);
-    }
-  };
+    })();
+    exports.App = App;
 });

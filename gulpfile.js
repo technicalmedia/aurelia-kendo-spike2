@@ -3,6 +3,7 @@ var runSequence = require('run-sequence');
 var del = require('del');
 var vinylPaths = require('vinyl-paths');
 var to5 = require('gulp-6to5');
+var tsc = require('gulp-typescript-compiler');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var yuidoc = require("gulp-yuidoc");
@@ -17,6 +18,8 @@ var tools = require('aurelia-tools');
 
 var path = {
   source:'src/**/*.js',
+  sourceTS: './src/**/*.ts',
+  sourceJSON: './src/**/*.json',
   html:'src/**/*.html',
   style:'styles/**/*.css',
   output:'dist/',
@@ -56,12 +59,34 @@ gulp.task('clean', function() {
     .pipe(vinylPaths(del));
 });
 
+gulp.task('build-json', function () {
+
+    return gulp.src(path.sourceJSON)
+        .pipe(plumber())
+        .pipe(gulp.dest(path.output))
+        .pipe(browserSync.reload({stream: true}));
+
+});
+
 gulp.task('build-system', function () {
   return gulp.src(path.source)
     .pipe(plumber())
     .pipe(changed(path.output, {extension: '.js'}))
     .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
     .pipe(gulp.dest(path.output));
+});
+
+gulp.task('build-amd', function () {
+    return gulp.src(path.sourceTS)
+        .pipe(plumber())
+        .pipe(tsc({
+            module: 'amd',
+            target: 'ES5',
+            sourcemap: false,
+            logErrors: true
+        }))
+        .pipe(gulp.dest(path.output))
+        .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('build-html', function () {
@@ -107,7 +132,7 @@ gulp.task('changelog', function(callback) {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html'],
+    ['build-json', 'build-amd', 'build-html'],
     callback
   );
 });
@@ -135,7 +160,8 @@ function reportChange(event){
 }
 
 gulp.task('watch', ['serve'], function() {
-  gulp.watch(path.source, ['build-system', browserSync.reload]).on('change', reportChange);
+  gulp.watch(path.sourceJSON, ['build-json', browserSync.reload]).on('change', reportChange);
+  gulp.watch(path.sourceTS, ['build-amd', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.html, ['build-html', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.style, [browserSync.reload]).on('change', reportChange);
 });

@@ -1,34 +1,9 @@
-System.register(["aurelia-framework"], function (_export) {
-  "use strict";
-
-  var Behavior, _prototypeProperties, NavBar;
-  return {
-    setters: [function (_aureliaFramework) {
-      Behavior = _aureliaFramework.Behavior;
-    }],
-    execute: function () {
-      _prototypeProperties = function (child, staticProps, instanceProps) {
-        if (staticProps) Object.defineProperties(child, staticProps);
-        if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-      };
-
-      NavBar = (function () {
-        function NavBar() {}
-
-        _prototypeProperties(NavBar, {
-          metadata: {
-            value: function metadata() {
-              return Behavior.withProperty("router");
-            },
-            writable: true,
-            enumerable: true,
-            configurable: true
-          }
-        });
-
+define(["require", "exports", "aurelia-framework"], function(require, exports, au) {
+    var NavBar = (function () {
+        function NavBar() {
+        }
+        NavBar.metadata = [new au.Behavior.withProperty("router")];
         return NavBar;
-      })();
-      _export("NavBar", NavBar);
-    }
-  };
+    })();
+    exports.NavBar = NavBar;
 });

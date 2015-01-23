@@ -1,0 +1,20 @@
+<template>
+    <import src="./money"></import>
+    <section>
+        <h2>Aurelia List w/Kendo DataSource</h2>
+
+        <div class="demo-section">
+            <div id="listView">
+                <div class="product" repeat.for="item of items">
+                    <img src="http://demos.telerik.com/kendo-ui/content/web/foods/${item.ProductID}.jpg"
+                         alt="${item.ProductName} image"/>
+
+                    <h3>${item.ProductName}</h3>
+
+                    <p>${item.UnitPrice | money:c}</p>
+                </div>
+            </div>
+            <div id="pager" class="k-pager-wrap"></div>
+        </div>
+    </section>
+</template>
