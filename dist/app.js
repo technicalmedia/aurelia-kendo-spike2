@@ -1,8 +1,10 @@
-define(["require", "exports", "aurelia-router"], function(require, exports, aur) {
+define(["require", "exports", "aurelia-router", "aurelia-templating-resources"], function(require, exports, aur, autr) {
     var App = (function () {
         function App(router) {
             this.router = router;
             this.router.configure(function (config) {
+                autr.GlobalBehavior.jQueryPlugins["kendopager"] = "kendoPager";
+
                 config.title = "Aurelia VS/TS";
                 config.map([
                     { route: ["", "welcome"], moduleId: "welcome", nav: true, title: "Welcome to VS/TS" },

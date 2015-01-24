@@ -1,11 +1,15 @@
 /// <reference path="../Scripts/typings/aurelia/aurelia.d.ts"/>
 import aur = require("aurelia-router");
+import autr = require("aurelia-templating-resources");
 
 export class App {
     static inject = [aur.Router];
 
     constructor(private router:aur.Router) {
         this.router.configure((config) => {
+            
+            autr.GlobalBehavior.jQueryPlugins["kendopager"] = "kendoPager";
+
             config.title = "Aurelia VS/TS";
             config.map([
                 {route: ["", "welcome"], moduleId: "welcome", nav: true, title: "Welcome to VS/TS"},

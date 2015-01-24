@@ -31,14 +31,6 @@ define(["require", "exports"], function(require, exports) {
 
             return promise;
         };
-
-        AuKendoTest.prototype.attached = function () {
-            console.log("au-kendo-test attached :)");
-
-            $(this.myPager).kendoPager({
-                dataSource: this.dataSource
-            });
-        };
         return AuKendoTest;
     })();
     exports.AuKendoTest = AuKendoTest;

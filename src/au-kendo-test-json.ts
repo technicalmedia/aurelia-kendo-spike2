@@ -37,14 +37,6 @@ export class AuKendoTest {
 
         return promise;
     }
-
-    attached() {
-        console.log("au-kendo-test attached :)");
-
-        $(this.myPager).kendoPager({
-            dataSource: this.dataSource
-        });
-    }
 }
 
 // http://demos.telerik.com/kendo-ui/content/shared/js/products.js

@@ -48,7 +48,8 @@
       "aurelia-bootstrapper": "^0.9.0",
       "aurelia-http-client": "^0.4.2",
       "bootstrap": "^3.3.1",
-      "font-awesome": "^4.2.0"
+      "font-awesome": "^4.2.0",
+      "templating-resources": "github:aurelia/templating-resources@^0.8.3"
     }
   }
 }
