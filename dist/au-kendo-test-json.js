@@ -31,6 +31,10 @@ define(["require", "exports"], function(require, exports) {
 
             return promise;
         };
+
+        AuKendoTest.prototype.bind = function () {
+            console.log("au-kendo-test-json in bind :)");
+        };
         return AuKendoTest;
     })();
     exports.AuKendoTest = AuKendoTest;

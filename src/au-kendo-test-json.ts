@@ -37,6 +37,10 @@ export class AuKendoTest {
 
         return promise;
     }
+
+    bind() {
+        console.log("au-kendo-test-json in bind :)");
+    }
 }
 
 // http://demos.telerik.com/kendo-ui/content/shared/js/products.js

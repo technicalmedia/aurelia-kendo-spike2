@@ -9,16 +9,29 @@ System.config({
 
 System.config({
   "map": {
-    "aurelia-bootstrapper": "github:aurelia/bootstrapper@0.9.1",
+    "aurelia-bootstrapper": "github:aurelia/bootstrapper@0.9.2",
     "aurelia-http-client": "github:aurelia/http-client@0.4.3",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.2.0",
-    "aurelia-templating-resources": "github:aurelia/templating-resources@0.8.3",
+    "templating-resources": "github:aurelia/templating-resources@0.8.3",
     "github:aurelia/binding@0.3.2": {
       "aurelia-metadata": "github:aurelia/metadata@0.3.0",
       "aurelia-task-queue": "github:aurelia/task-queue@0.2.2"
     },
     "github:aurelia/bootstrapper@0.9.1": {
+      "aurelia-event-aggregator": "github:aurelia/event-aggregator@0.2.2",
+      "aurelia-framework": "github:aurelia/framework@0.8.2",
+      "aurelia-history": "github:aurelia/history@0.2.2",
+      "aurelia-history-browser": "github:aurelia/history-browser@0.2.3",
+      "aurelia-loader-default": "github:aurelia/loader-default@0.4.1",
+      "aurelia-logging-console": "github:aurelia/logging-console@0.2.2",
+      "aurelia-router": "github:aurelia/router@0.5.1",
+      "aurelia-templating": "github:aurelia/templating@0.8.4",
+      "aurelia-templating-binding": "github:aurelia/templating-binding@0.8.2",
+      "aurelia-templating-resources": "github:aurelia/templating-resources@0.8.3",
+      "aurelia-templating-router": "github:aurelia/templating-router@0.9.2"
+    },
+    "github:aurelia/bootstrapper@0.9.2": {
       "aurelia-event-aggregator": "github:aurelia/event-aggregator@0.2.2",
       "aurelia-framework": "github:aurelia/framework@0.8.2",
       "aurelia-history": "github:aurelia/history@0.2.2",
